@@ -1,0 +1,1120 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<meta name="theme-color" content="#06060c">
+<title>Hard Mode App | Oferta Exclusiva</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@700;800;900&family=Barlow:ital,wght@0,400;0,500;0,600;1,400&display=swap" rel="stylesheet">
+<style>
+
+/* ═══════════════════════════════════════════
+   RESET & TOKENS
+═══════════════════════════════════════════ */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+
+:root {
+  --bg:          #06060c;
+  --bg-soft:     #0d0d16;
+  --surface:     #ffffff;
+  --surface-2:   #f6f3fb;
+  --surface-3:   #efe9fb;
+  --card:        rgba(255,255,255,0.035);
+  --card-h:      rgba(255,255,255,0.065);
+  --border:      rgba(255,255,255,0.07);
+  --border-h:    rgba(255,255,255,0.14);
+  --purple:      #5e17eb;
+  --purple-lt:   #9d6ff7;
+  --purple-dim:  rgba(94,23,235,0.18);
+  --gold:        #c9a84c;
+  --gold-dim:    rgba(201,168,76,0.15);
+  --white:       #f2ecfb;
+  --muted:       rgba(242,236,251,0.52);
+  --dim:         rgba(242,236,251,0.26);
+  --dark-text:   #171321;
+  --dark-muted:  rgba(23,19,33,0.68);
+  --dark-dim:    rgba(23,19,33,0.42);
+  --dark-border: rgba(23,19,33,0.08);
+  --dark-border-h: rgba(23,19,33,0.14);
+  --r:           12px;
+  --blur:        blur(20px);
+  --pad:         20px;
+  --max:         860px;
+  --section-dark: linear-gradient(180deg, rgba(255,255,255,0.00), rgba(255,255,255,0.00));
+  --section-light: linear-gradient(180deg, rgba(255,255,255,0.88), rgba(246,243,251,0.96));
+}
+
+html, body { min-height: 100%; }
+body {
+  background: var(--bg);
+  color: var(--white);
+  font-family: 'Barlow', sans-serif;
+  font-size: 16px;
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  overflow-x: hidden;
+}
+p { text-wrap: pretty; }
+a { color: inherit; text-decoration: none; }
+img, iframe, video { max-width: 100%; display: block; }
+
+/* ═══════════════════════════════════════════
+   ORBS
+═══════════════════════════════════════════ */
+.orbs { position: fixed; inset: 0; pointer-events: none; z-index: 0; overflow: hidden; }
+.orb {
+  position: absolute; border-radius: 50%;
+  filter: blur(80px); opacity: 0.18;
+  animation: drift 18s ease-in-out infinite alternate;
+}
+.orb-1 { width: 520px; height: 520px; background: #5e17eb; top: -12%; left: -18%; animation-delay: 0s; }
+.orb-2 { width: 340px; height: 340px; background: #8b5cf6; top: 40%; right: -10%; animation-delay: -6s; opacity: 0.12; }
+.orb-3 { width: 260px; height: 260px; background: #3b1fa8; bottom: 8%; left: 22%; animation-delay: -12s; opacity: 0.14; }
+.orb-4 { width: 180px; height: 180px; background: #6d28d9; bottom: 35%; right: 18%; animation-delay: -4s; opacity: 0.10; }
+@keyframes drift {
+  0%   { transform: translate(0,0) scale(1); }
+  50%  { transform: translate(30px,-20px) scale(1.08); }
+  100% { transform: translate(-20px,30px) scale(0.95); }
+}
+
+body::after {
+  content: '';
+  position: fixed; inset: 0; pointer-events: none; z-index: 1;
+  opacity: 0.025;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='1'/%3E%3C/svg%3E");
+  background-size: 256px 256px;
+}
+
+/* ═══════════════════════════════════════════
+   LAYOUT
+═══════════════════════════════════════════ */
+.wrap {
+  position: relative; z-index: 2;
+  width: 100%; max-width: var(--max);
+  margin: 0 auto; padding: 0 var(--pad);
+}
+section {
+  position: relative; z-index: 2;
+  padding: 72px 0;
+}
+section + section { border-top: 1px solid var(--border); }
+
+/* alternância de dobras */
+.section-dark {
+  background: var(--section-dark);
+  color: var(--white);
+}
+.section-light {
+  background:
+    radial-gradient(ellipse 120% 120% at 50% 0%, rgba(94,23,235,0.06) 0%, rgba(94,23,235,0.00) 52%),
+    linear-gradient(180deg, rgba(255,255,255,0.98), rgba(246,243,251,0.98));
+  color: var(--dark-text);
+  border-top: 1px solid rgba(23,19,33,0.06) !important;
+  border-bottom: 1px solid rgba(23,19,33,0.04);
+}
+.section-light .eyebrow { color: var(--purple); }
+.section-light .divider {
+  background: linear-gradient(90deg, var(--purple), rgba(94,23,235,0.14));
+}
+.section-light .display,
+.section-light .section-title,
+.section-light .benefit-title,
+.section-light .module-name,
+.section-light .guarantee-title,
+.section-light .choice-label--yes,
+.section-light .choice-desc[style*="color:var(--white)"] {
+  color: var(--dark-text) !important;
+}
+.section-light .body-p,
+.section-light .benefit-desc,
+.section-light .module-result,
+.section-light .stack-label,
+.section-light .guarantee-text,
+.section-light .choice-desc,
+.section-light .btn-sub,
+.section-light .price-context,
+.section-light .price-feature,
+.section-light .stack-total-label {
+  color: var(--dark-muted) !important;
+}
+.section-light em {
+  color: var(--purple);
+}
+.section-light .stack-total-value {
+  color: rgba(23,19,33,0.38);
+}
+.section-light .btn--ghost {
+  color: var(--dark-dim);
+  border-color: var(--dark-border);
+}
+.section-light .decline-link {
+  color: var(--dark-dim);
+  text-decoration-color: rgba(23,19,33,0.14);
+}
+.section-light .decline-link:hover { color: var(--dark-muted); }
+
+/* ═══════════════════════════════════════════
+   TYPOGRAPHY
+═══════════════════════════════════════════ */
+.display {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900; line-height: 1.0;
+  text-transform: uppercase; letter-spacing: -0.01em;
+  text-wrap: balance;
+}
+.eyebrow {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 11px;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  color: var(--purple-lt);
+}
+.divider {
+  width: 32px; height: 2px;
+  background: linear-gradient(90deg, var(--purple), transparent);
+  border-radius: 2px; margin: 14px 0 28px;
+}
+.section-title { font-size: clamp(26px, 7vw, 46px); }
+.body-p { font-size: 16px; color: var(--muted); margin-bottom: 18px; }
+.body-p:last-child { margin-bottom: 0; }
+.body-p strong { color: var(--white); font-weight: 600; }
+.section-light .body-p strong { color: var(--dark-text); }
+em { color: var(--purple-lt); font-style: normal; }
+
+/* ═══════════════════════════════════════════
+   BUTTON
+═══════════════════════════════════════════ */
+.btn {
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 15px; letter-spacing: 0.1em;
+  text-transform: uppercase; white-space: nowrap;
+  cursor: pointer; border: none; border-radius: 50px;
+  padding: 0 36px; min-height: 56px;
+  transition: all 0.25s cubic-bezier(0.16,1,0.3,1);
+  position: relative; overflow: hidden; width: 100%;
+  -webkit-tap-highlight-color: transparent;
+}
+.btn--primary {
+  background: linear-gradient(135deg, #5e17eb 0%, #8b5cf6 100%);
+  color: var(--white);
+  box-shadow: 0 4px 28px rgba(94,23,235,0.45), 0 1px 0 rgba(255,255,255,0.12) inset;
+}
+.btn--primary::after {
+  content: ''; position: absolute; inset: 0;
+  background: linear-gradient(135deg, transparent 40%, rgba(255,255,255,0.06) 100%);
+  border-radius: inherit;
+}
+@media (hover: hover) {
+  .btn--primary:hover {
+    box-shadow: 0 8px 44px rgba(94,23,235,0.6), 0 1px 0 rgba(255,255,255,0.15) inset;
+    transform: translateY(-2px);
+  }
+}
+.btn--primary:active { transform: scale(0.98); opacity: 0.92; }
+.btn--ghost {
+  background: transparent; color: var(--dim);
+  border: 1px solid var(--border);
+  font-size: 13px; min-height: 40px;
+}
+@media (hover: hover) { .btn--ghost:hover { color: var(--muted); border-color: var(--border-h); } }
+
+.btn-wrap { max-width: 480px; margin: 0 auto; }
+.btn-sub {
+  text-align: center; font-size: 12px; color: var(--dim);
+  margin-top: 10px; letter-spacing: 0.06em;
+}
+
+/* ═══════════════════════════════════════════
+   HERO / STOP SECTION
+═══════════════════════════════════════════ */
+.hero {
+  display: flex;
+  flex-direction: column; justify-content: flex-start;
+  padding: 48px 0 0; text-align: center;
+  border-top: none !important;
+}
+.hero::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: radial-gradient(ellipse 110% 55% at 50% 0%, rgba(94,23,235,0.16) 0%, transparent 60%);
+  pointer-events: none; z-index: 1;
+}
+
+.stop-badge {
+  display: inline-flex; align-items: center; gap: 8px;
+  background: rgba(94,23,235,0.12);
+  border: 1px solid rgba(94,23,235,0.3);
+  border-radius: 50px; padding: 6px 18px;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 11px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--purple-lt);
+  margin-bottom: 18px;
+  animation: pulse-badge 2.8s ease-in-out infinite;
+}
+.stop-badge::before { content: '●'; font-size: 8px; }
+@keyframes pulse-badge {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(94,23,235,0.3); }
+  50%       { box-shadow: 0 0 0 6px rgba(94,23,235,0); }
+}
+
+.hero__h1 {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900; font-size: clamp(28px, 7.5vw, 52px);
+  text-transform: uppercase; letter-spacing: -0.01em; line-height: 1.05;
+  color: var(--white); margin-bottom: 10px; text-wrap: balance;
+}
+.hero__h1 em { color: var(--purple-lt); font-style: normal; }
+
+.hero__h2 {
+  font-size: clamp(14px, 3.5vw, 16px); color: var(--muted);
+  max-width: 600px; margin: 0 auto 20px; line-height: 1.7;
+}
+
+.confirm-card {
+  display: inline-flex; align-items: center; gap: 12px;
+  background: rgba(34,197,94,0.08);
+  border: 1px solid rgba(34,197,94,0.2);
+  border-radius: var(--r); padding: 14px 22px;
+  margin-bottom: 36px;
+  font-size: 14px; color: rgba(134,239,172,0.85);
+}
+.confirm-card svg { flex-shrink: 0; color: #4ade80; }
+
+/* ═══════════════════════════════════════════
+   VSL SECTION
+═══════════════════════════════════════════ */
+.vsl-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 16px;
+  overflow: hidden;
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  position: relative;
+  box-shadow: 0 24px 60px rgba(0,0,0,0.22);
+}
+.vsl-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139,92,246,0.5), transparent);
+}
+.vsl-placeholder {
+  aspect-ratio: 16/9;
+  background: rgba(255,255,255,0.02);
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center; gap: 16px;
+  border-radius: 16px;
+  min-height: 200px;
+}
+.vsl-play {
+  width: 72px; height: 72px;
+  background: linear-gradient(135deg, var(--purple), var(--purple-lt));
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 40px rgba(94,23,235,0.4);
+}
+.vsl-play svg { margin-left: 4px; }
+.vsl-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 13px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: var(--dim);
+}
+.section-light .vsl-card {
+  background: rgba(255,255,255,0.76);
+  border: 1px solid rgba(23,19,33,0.08);
+  box-shadow: 0 26px 60px rgba(23,19,33,0.08);
+}
+.section-light .vsl-placeholder {
+  background: rgba(94,23,235,0.02);
+}
+.section-light .vsl-label {
+  color: var(--dark-dim);
+}
+
+/* ═══════════════════════════════════════════
+   BENEFIT CARDS
+═══════════════════════════════════════════ */
+.benefit-list { display: flex; flex-direction: column; gap: 20px; margin-top: 36px; }
+.benefit-item {
+  display: flex; gap: 18px; align-items: flex-start;
+  padding: 24px 22px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  backdrop-filter: var(--blur);
+  -webkit-backdrop-filter: var(--blur);
+  position: relative; overflow: hidden;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.benefit-item::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139,92,246,0.3), transparent);
+}
+@media (hover: hover) {
+  .benefit-item:hover { background: var(--card-h); border-color: var(--border-h); transform: translateY(-2px); }
+}
+.benefit-num {
+  flex-shrink: 0;
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900; font-size: 28px;
+  background: linear-gradient(135deg, var(--purple-lt), rgba(157,111,247,0.4));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+  background-clip: text; line-height: 1; padding-top: 2px;
+}
+.benefit-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 17px;
+  text-transform: uppercase; letter-spacing: 0.04em;
+  color: var(--white); margin-bottom: 6px;
+}
+.benefit-desc { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+.section-light .benefit-item {
+  background: rgba(255,255,255,0.82);
+  border: 1px solid rgba(23,19,33,0.08);
+  box-shadow: 0 16px 34px rgba(23,19,33,0.05);
+}
+@media (hover: hover) {
+  .section-light .benefit-item:hover {
+    background: #ffffff;
+    border-color: rgba(23,19,33,0.12);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   MODULES GRID
+═══════════════════════════════════════════ */
+.modules-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 12px; margin-top: 36px;
+}
+.module-card {
+  display: flex; gap: 16px; align-items: flex-start;
+  padding: 20px 18px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+  position: relative; overflow: hidden;
+  transition: background 0.2s, border-color 0.2s, transform 0.2s;
+}
+.module-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139,92,246,0.25), transparent);
+}
+.module-icon {
+  flex-shrink: 0; width: 42px; height: 42px;
+  background: var(--purple-dim);
+  border: 1px solid rgba(94,23,235,0.25);
+  border-radius: 10px;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 18px; line-height: 1;
+}
+.module-body { flex: 1; min-width: 0; }
+.module-num {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 10px; letter-spacing: 0.2em;
+  text-transform: uppercase; color: var(--dim); margin-bottom: 2px;
+}
+.module-name {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 16px; text-transform: uppercase;
+  letter-spacing: 0.04em; color: var(--white); margin-bottom: 4px;
+}
+.module-result { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+.section-light .module-card {
+  background: rgba(255,255,255,0.84);
+  border: 1px solid rgba(23,19,33,0.08);
+  box-shadow: 0 14px 30px rgba(23,19,33,0.05);
+}
+.section-light .module-icon {
+  background: rgba(94,23,235,0.08);
+  border-color: rgba(94,23,235,0.16);
+}
+.section-light .module-num {
+  color: var(--dark-dim);
+}
+@media (hover: hover) {
+  .module-card:hover {
+    transform: translateY(-2px);
+  }
+}
+
+/* ═══════════════════════════════════════════
+   VALUE STACK
+═══════════════════════════════════════════ */
+.stack-list { display: flex; flex-direction: column; gap: 1px; margin: 28px 0; }
+.stack-item {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 14px 18px;
+  background: var(--card);
+}
+.stack-item:first-child { border-radius: var(--r) var(--r) 0 0; }
+.stack-item:last-child { border-radius: 0 0 var(--r) var(--r); }
+.stack-label { font-size: 14px; color: var(--muted); flex: 1; }
+.stack-value {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 15px; color: var(--white);
+  white-space: nowrap; margin-left: 16px;
+}
+.stack-total-wrap {
+  display: flex; justify-content: space-between; align-items: center;
+  padding: 18px 20px;
+  background: rgba(94,23,235,0.1);
+  border: 1px solid rgba(94,23,235,0.25);
+  border-radius: var(--r); margin-bottom: 12px;
+}
+.stack-total-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 12px; letter-spacing: 0.16em;
+  text-transform: uppercase; color: var(--muted);
+}
+.stack-total-value {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900; font-size: 22px;
+  text-decoration: line-through; color: var(--dim);
+}
+.section-light .stack-item {
+  background: rgba(255,255,255,0.86);
+  border: 1px solid rgba(23,19,33,0.05);
+}
+.section-light .stack-value {
+  color: var(--dark-text);
+}
+.section-light [style*="background:var(--card)"] {
+  background: rgba(255,255,255,0.86) !important;
+  border: 1px solid rgba(23,19,33,0.08) !important;
+  box-shadow: 0 12px 26px rgba(23,19,33,0.04);
+}
+
+/* ═══════════════════════════════════════════
+   PRICE SECTION
+═══════════════════════════════════════════ */
+.price-card {
+  padding: 40px 28px 44px;
+  background: linear-gradient(180deg, rgba(94,23,235,0.08), rgba(94,23,235,0.12));
+  border: 1px solid rgba(94,23,235,0.22);
+  border-radius: 16px;
+  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+  box-shadow: 0 24px 60px rgba(94,23,235,0.12);
+  position: relative; overflow: hidden; text-align: center;
+}
+.price-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(139,92,246,0.8), transparent);
+}
+.price-card::after {
+  content: '';
+  position: absolute;
+  inset: auto -10% -40% auto;
+  width: 240px; height: 240px;
+  background: radial-gradient(circle, rgba(94,23,235,0.18), transparent 70%);
+  pointer-events: none;
+}
+.price-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 11px; letter-spacing: 0.22em;
+  text-transform: uppercase; color: var(--purple); margin-bottom: 16px;
+}
+.price-main {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 900; font-size: clamp(56px, 18vw, 88px);
+  line-height: 0.9; color: var(--dark-text); letter-spacing: -0.02em;
+}
+.price-sup { font-size: 0.35em; vertical-align: top; margin-top: 0.2em; color: rgba(23,19,33,0.6); }
+.price-period {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 700; font-size: 18px; letter-spacing: 0.06em;
+  color: var(--dark-muted); text-transform: uppercase; margin-top: 4px;
+}
+.price-context {
+  font-size: 14px; color: var(--dark-muted);
+  margin: 20px 0 28px; line-height: 1.6;
+}
+.price-context strong { color: var(--dark-text); }
+.price-features { display: flex; flex-direction: column; gap: 8px; margin-bottom: 28px; }
+.price-feature {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 14px; color: var(--dark-muted); text-align: left;
+}
+.price-feature::before {
+  content: '✓'; flex-shrink: 0; width: 20px; height: 20px;
+  background: rgba(34,197,94,0.1); border: 1px solid rgba(34,197,94,0.2);
+  border-radius: 50%; display: flex; align-items: center; justify-content: center;
+  font-size: 11px; color: #4ade80; font-weight: 700;
+}
+
+/* ═══════════════════════════════════════════
+   GUARANTEE
+═══════════════════════════════════════════ */
+.guarantee-wrap {
+  display: flex; gap: 20px; align-items: flex-start;
+  padding: 28px 24px;
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: var(--r);
+  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+}
+.guarantee-icon {
+  flex-shrink: 0; width: 52px; height: 52px;
+  background: var(--gold-dim);
+  border: 1px solid rgba(201,168,76,0.2);
+  border-radius: 50%;
+  display: flex; align-items: center; justify-content: center;
+  font-size: 24px;
+}
+.guarantee-title {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 17px; text-transform: uppercase;
+  letter-spacing: 0.04em; color: var(--white); margin-bottom: 6px;
+}
+.guarantee-text { font-size: 14px; color: var(--muted); line-height: 1.65; }
+
+.section-light .guarantee-wrap {
+  background: rgba(255,255,255,0.86);
+  border: 1px solid rgba(23,19,33,0.08);
+  box-shadow: 0 18px 38px rgba(23,19,33,0.05);
+}
+
+/* ═══════════════════════════════════════════
+   FINAL CTA / CHOICE
+═══════════════════════════════════════════ */
+.choice-wrap { display: flex; flex-direction: column; gap: 14px; margin-top: 36px; }
+.choice-card {
+  padding: 22px 20px;
+  border-radius: var(--r);
+  border: 1px solid var(--border);
+  backdrop-filter: var(--blur); -webkit-backdrop-filter: var(--blur);
+}
+.choice-card--yes {
+  background: rgba(94,23,235,0.1);
+  border-color: rgba(94,23,235,0.3);
+}
+.choice-card--no { background: var(--card); }
+.choice-label {
+  font-family: 'Barlow Condensed', sans-serif;
+  font-weight: 800; font-size: 13px; letter-spacing: 0.14em;
+  text-transform: uppercase; margin-bottom: 6px;
+}
+.choice-label--yes { color: var(--purple-lt); }
+.choice-label--no { color: var(--dim); }
+.choice-desc { font-size: 13px; color: var(--muted); line-height: 1.5; }
+
+.section-light .choice-card--no {
+  background: rgba(255,255,255,0.74);
+  border-color: rgba(23,19,33,0.08);
+}
+.section-light .choice-card--yes {
+  background: rgba(94,23,235,0.08);
+  border-color: rgba(94,23,235,0.18);
+}
+.section-light .choice-label--no { color: var(--dark-dim); }
+
+/* ═══════════════════════════════════════════
+   DECLINE LINK
+═══════════════════════════════════════════ */
+.decline-wrap { text-align: center; margin-top: 24px; }
+.decline-link {
+  font-size: 12px; color: var(--dim); cursor: pointer;
+  text-decoration: underline; text-underline-offset: 3px;
+  text-decoration-color: rgba(242,236,251,0.15);
+  background: none; border: none; padding: 0;
+  transition: color 0.2s;
+}
+.decline-link:hover { color: var(--muted); }
+
+/* ═══════════════════════════════════════════
+   SCROLL REVEAL
+═══════════════════════════════════════════ */
+.reveal { opacity: 0; transform: translateY(20px); transition: opacity 0.6s ease, transform 0.6s ease; }
+.reveal.visible { opacity: 1; transform: translateY(0); }
+.reveal-d1 { transition-delay: 0.08s; }
+.reveal-d2 { transition-delay: 0.16s; }
+.reveal-d3 { transition-delay: 0.24s; }
+
+/* ═══════════════════════════════════════════
+   FOOTER
+═══════════════════════════════════════════ */
+footer {
+  position: relative; z-index: 2;
+  padding: 28px var(--pad);
+  border-top: 1px solid var(--border);
+  text-align: center;
+  font-size: 11px; color: var(--dim);
+  letter-spacing: 0.18em; text-transform: uppercase;
+  font-family: 'Barlow Condensed', sans-serif; font-weight: 700; line-height: 1.9;
+  background: rgba(0,0,0,0.12);
+}
+
+/* ═══════════════════════════════════════════
+   DESKTOP
+═══════════════════════════════════════════ */
+@media (min-width: 640px) {
+  :root { --pad: 40px; }
+  body { font-size: 17px; }
+  section { padding: 88px 0; }
+  .modules-grid { grid-template-columns: 1fr 1fr; gap: 14px; }
+  .btn-wrap { max-width: 520px; }
+}
+@media (min-width: 860px) {
+  :root { --pad: 48px; }
+  .choice-wrap { flex-direction: row; }
+  .choice-card { flex: 1; }
+}
+
+</style>
+</head>
+<body>
+
+<!-- Orbs -->
+<div class="orbs" aria-hidden="true">
+  <div class="orb orb-1"></div>
+  <div class="orb orb-2"></div>
+  <div class="orb orb-3"></div>
+  <div class="orb orb-4"></div>
+</div>
+
+<!-- ████████████████████████████████
+     HERO — H1 + VSL NA PRIMEIRA DOBRA
+████████████████████████████████ -->
+<section class="hero section-dark">
+  <div class="wrap" style="max-width:760px;">
+
+    <!-- Badge de urgência -->
+    <div style="display:flex;justify-content:center;" class="reveal">
+      <div class="stop-badge">Oferta exclusiva para clientes do Protocolo · apenas nessa página</div>
+    </div>
+
+    <!-- H1 — Urgência + Oferta única + Disponível apenas agora -->
+    <h1 class="hero__h1 reveal reveal-d1">
+      O Protocolo te ensina o que fazer.<br>
+      <em>O App garante que você<br>vai de fato fazer.</em>
+    </h1>
+
+    <!-- H2 — Confirmação da compra + contexto do acesso exclusivo -->
+    <p class="hero__h2 reveal reveal-d2">
+      Sua compra do <strong style="color:var(--white);">Protocolo de Força Prática</strong> foi confirmada — o acesso chega por e-mail em instantes.
+      Mas antes de você fechar essa página: o <strong style="color:var(--white);">Hard Mode App</strong> — o ambiente onde o método vai viver, onde os hábitos vão ser registrados, onde o progresso vai ser visível — está disponível para clientes do Protocolo apenas aqui, agora.
+    </p>
+
+    <!-- VSL — PRIMEIRA DOBRA -->
+    <div class="reveal reveal-d2" style="width:100%;margin:0 auto 24px;">
+      <p class="eyebrow" style="text-align:center;margin-bottom:12px;">Assista antes de decidir</p>
+      <div class="vsl-card">
+        <!-- SUBSTITUIR PELO EMBED REAL DO VSL -->
+        <div class="vsl-placeholder">
+          <div class="vsl-play">
+            <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
+          </div>
+          <span class="vsl-label">Cole aqui o embed do vídeo</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- CTA imediato pós-VSL -->
+    <div class="btn-wrap reveal reveal-d3" style="margin-bottom:56px;">
+      <a href="LINK_CHECKOUT_APP" class="btn btn--primary" id="btn-cta-1">
+        → Sim, quero o Hard Mode App
+      </a>
+      <p class="btn-sub">Acesso imediato · cancele quando quiser · garantia de 7 dias</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- ████████████████████████████████
+     COPY DE APOIO — PÓS FOLD
+████████████████████████████████ -->
+<section class="section-light" style="padding:56px 0 40px;">
+  <div class="wrap" style="max-width:640px; text-align:center;">
+    <div class="reveal">
+      <p class="body-p" style="font-size:clamp(15px,3.5vw,17px);margin-bottom:16px;">
+        Onde você vai registrar o Necrológio que vai escrever na Aula 1?
+        Onde você vai marcar os hábitos que o Protocolo vai te pedir para construir?
+        Onde vai acompanhar se está de fato <strong>vivendo o método</strong> — ou só consumindo mais um curso?
+      </p>
+      <p class="body-p" style="font-size:clamp(15px,3.5vw,17px);">
+        O Protocolo é o mapa. O <strong>Hard Mode App</strong> é o terreno onde você vai construir.
+        E hoje, por ser cliente do Protocolo, você tem acesso a ele em condição que não vai se repetir.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- ████████████████████████████████
+     BENEFÍCIOS
+████████████████████████████████ -->
+<section class="section-dark">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Por que o app existe</p>
+      <div class="divider"></div>
+      <h2 class="display section-title">O Protocolo te ensina a construir.<br><em>O App garante que<br>você não pare.</em></h2>
+    </div>
+
+    <div class="benefit-list">
+
+      <div class="benefit-item reveal reveal-d1">
+        <div class="benefit-num">01</div>
+        <div class="benefit-body">
+          <div class="benefit-title">O método precisa de um ambiente para funcionar</div>
+          <p class="benefit-desc">A maior falha do desenvolvimento pessoal não é falta de método — é falta de ambiente. O Lucas sabe o que fazer. O problema é que quando a segunda-feira chega sem estrutura, ele volta para o piloto automático. O Hard Mode App é esse ambiente: o lugar onde o método vive, os hábitos são registrados, o progresso é visível, e A Base te mantém em movimento mesmo quando a motivação vai embora.</p>
+        </div>
+      </div>
+
+      <div class="benefit-item reveal reveal-d2">
+        <div class="benefit-num">02</div>
+        <div class="benefit-body">
+          <div class="benefit-title">Tudo no mesmo lugar — e isso muda mais do que parece</div>
+          <p class="benefit-desc">Treino com progressão de carga real, nutrição com controle de macros, finanças como expressão de caráter, e o Necrológio que você vai escrever na Aula 1 salvo digitalmente — revisável a qualquer momento, funcionando como bússola permanente. Não é uma coleção de funcionalidades. É um sistema integrado construído sobre os três pilares. Quando tudo está conectado, o progresso em uma área alimenta as outras.</p>
+        </div>
+      </div>
+
+      <div class="benefit-item reveal reveal-d3">
+        <div class="benefit-num">03</div>
+        <div class="benefit-body">
+          <div class="benefit-title">O Hard Mode Score transforma o método em número — e números não mentem</div>
+          <p class="benefit-desc">Todos os dias, o app calcula uma pontuação de 0 a 1000 baseada no que você de fato fez: treinou, cumpriu os hábitos, fez o check-in espiritual, registrou as finanças, avançou nos cursos. Não é gamificação vazia. É um espelho do seu comportamento real. Quando o score cai, você sabe exatamente por quê — e onde agir. Isso transforma a consistência em algo mensurável, não em sensação.</p>
+        </div>
+      </div>
+
+      <div class="benefit-item reveal">
+        <div class="benefit-num">04</div>
+        <div class="benefit-body">
+          <div class="benefit-title">Para o dia em que você não quer seguir</div>
+          <p class="benefit-desc">Todo homem que está construindo passa por dias em que a estrutura cede. O app tem dois recursos para esses momentos: o <strong>Modo de Crise</strong> — uma tela que para tudo, aplica o protocolo da Aula 9, e te devolve para o próximo passo — e o <strong>Coach Hard Mode</strong>, um assistente de IA treinado no método que conhece seu Necrológio, seu streak e seus pilares mais fracos. Não é conforto. É o empurrão que o Lucas precisa.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ████████████████████████████████
+     BOTÃO 2 — PÓS BENEFÍCIOS
+████████████████████████████████ -->
+<section class="section-light" style="padding:40px 0; border-top:none !important;">
+  <div class="wrap">
+    <div class="btn-wrap">
+      <a href="LINK_CHECKOUT_APP" class="btn btn--primary" id="btn-cta-2">
+        → Quero acessar o app agora!
+      </a>
+      <p class="btn-sub">Hard Mode App · R$49,90/mês · cancele quando quiser</p>
+    </div>
+  </div>
+</section>
+
+<!-- ████████████████████████████████
+     MÓDULOS DO PRODUTO
+████████████████████████████████ -->
+<section class="section-light">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">O que está incluído</p>
+      <div class="divider"></div>
+      <h2 class="display section-title">12 módulos.<br><em>Um ecossistema.</em></h2>
+      <p class="body-p" style="margin-top:12px;">Tudo que você precisa para viver o método Hard Mode está aqui, integrado e construído sobre os três pilares.</p>
+    </div>
+
+    <div class="modules-grid">
+
+      <div class="module-card reveal reveal-d1">
+        <div class="module-icon">📚</div>
+        <div class="module-body">
+          <div class="module-num">Módulo 01</div>
+          <div class="module-name">Área de Cursos</div>
+          <p class="module-result">Protocolo + Imersão Hard Mode com player, notas por aula e Elo Pedagógico — a tarefa que precisa ser concluída antes de avançar.</p>
+        </div>
+      </div>
+
+      <div class="module-card reveal reveal-d2">
+        <div class="module-icon">✅</div>
+        <div class="module-body">
+          <div class="module-num">Módulo 02</div>
+          <div class="module-name">Tracker de Hábitos</div>
+          <p class="module-result">Check-in diário dos três pilares, streak individual por hábito, calendário de consistência e lembrete no horário que você definir.</p>
+        </div>
+      </div>
+
+      <div class="module-card reveal reveal-d1">
+        <div class="module-icon">📜</div>
+        <div class="module-body">
+          <div class="module-num">Módulo 03</div>
+          <div class="module-name">Necrológio Digital</div>
+          <p class="module-result">O exercício da Aula 1 salvo e revisável a qualquer momento. Histórico de versões. Filtro de decisão integrado ao módulo financeiro.</p>
+        </div>
+      </div>
+
+      <div class="module-card reveal reveal-d2">
+        <div class="module-icon">🏋️</div>
+        <div class="module-body">
+          <div class="module-num">Módulo 04</div>
+          <div class="module-name">Área de Treino</div>
+          <p class="module-result">Programas de 6-12 semanas, banco de 150+ exercícios, sessão ativa em tempo real com timer de descanso, histórico de carga e detecção de PRs.</p>
+        </div>
+      </div>
+
+      <div class="module-card reveal reveal-d1">
+        <div class="module-icon">🥗</div>
+        <div class="module-body">
+          <div class="module-num">Módulo 05</div>
+          <div class="module-name">Nutrição e Macros</div>
+          <p class="module-result">Log com banco de alimentos TACO, scanner de código de barras, receitas Hard Mode e meta calórica ajustada automaticamente nos dias de treino.</p>
+        </div>
+      </div>
+
+      <div class="module-card reveal reveal-d2">
+        <div class="module-icon">💊</div>
+        <div class="module-body">
+          <div class="module-num">Módulo 06</div>
+          <div class="module-name">Suplementação</div>
+          <p class="module-result">Banco de referência com evidência científica de cada suplemento. Tracker diário integrado à rotina dos três pilares.</p>
+        </div>
+      </div>
+
+      <div class="module-card reveal reveal-d1">
+        <div class="module-icon">💰</div>
+        <div class="module-body">
+          <div class="module-num">Módulo 07</div>
+          <div class="module-name">Financeiro</div>
+          <p class="module-result">Entradas, saídas, orçamento, dívidas, investimentos e patrimônio líquido. Cada gasto acima de R$100 passa pelo filtro do Necrológio.</p>
+        </div>
+      </div>
+
+      <div class="module-card reveal reveal-d2">
+        <div class="module-icon">⚡</div>
+        <div class="module-body">
+          <div class="module-num">Módulo 08</div>
+          <div class="module-name">Hard Mode Score</div>
+          <p class="module-result">Pontuação diária de 0 a 1000 calculada sobre o que você de fato fez. Sete níveis de progressão. Histórico de 90 dias.</p>
+        </div>
+      </div>
+
+      <div class="module-card reveal reveal-d1">
+        <div class="module-icon">📓</div>
+        <div class="module-body">
+          <div class="module-num">Módulo 09</div>
+          <div class="module-name">Jornal do Homem de Base</div>
+          <p class="module-result">Diário estruturado em três momentos: intenção da manhã, fechamento da noite e entrada livre. Integrado ao Coach. Exportável em PDF.</p>
+        </div>
+      </div>
+
+      <div class="module-card reveal reveal-d2">
+        <div class="module-icon">🤖</div>
+        <div class="module-body">
+          <div class="module-num">Módulo 10</div>
+          <div class="module-name">Coach Hard Mode</div>
+          <p class="module-result">Assistente de IA treinado no método. Conhece seu Necrológio, streak e pilares mais fracos. Cobra — não motiva.</p>
+        </div>
+      </div>
+
+      <div class="module-card reveal reveal-d1">
+        <div class="module-icon">🏗️</div>
+        <div class="module-body">
+          <div class="module-num">Módulo 11</div>
+          <div class="module-name">Comunidade A Base</div>
+          <p class="module-result">Feed de check-ins, projetos das 12 semanas, sistema de accountability em par, desafios coletivos e ranking semanal de consistência.</p>
+        </div>
+      </div>
+
+      <div class="module-card reveal reveal-d2">
+        <div class="module-icon">🔴</div>
+        <div class="module-body">
+          <div class="module-num">Módulo 12</div>
+          <div class="module-name">Modo de Crise</div>
+          <p class="module-result">Para quando o dia dá errado. Silêncio forçado, leitura do próprio Necrológio, próximo passo mínimo e compromisso para amanhã.</p>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- ████████████████████████████████
+     EMPILHAMENTO DE VALOR
+████████████████████████████████ -->
+<section class="section-dark">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">O que isso valeria separado</p>
+      <div class="divider"></div>
+      <h2 class="display section-title">Se você comprasse<br><em>tudo isso no mercado.</em></h2>
+      <p class="body-p" style="margin-top:12px;max-width:560px;">Cada um desses sistemas existe como produto separado. Aqui, você tem todos — integrados, falando entre si, e construídos sobre o método Hard Mode.</p>
+    </div>
+
+    <div class="stack-list reveal reveal-d1">
+      <div class="stack-item"><span class="stack-label">App de treino com progressão de cargas (Hevy, Strong)</span><span class="stack-value">R$29,90/mês</span></div>
+      <div class="stack-item"><span class="stack-label">App de nutrição com banco brasileiro (MyFitnessPal Premium)</span><span class="stack-value">R$29,90/mês</span></div>
+      <div class="stack-item"><span class="stack-label">App de controle financeiro (Mobills Premium)</span><span class="stack-value">R$19,90/mês</span></div>
+      <div class="stack-item"><span class="stack-label">App de hábitos com análise de consistência (Habitify)</span><span class="stack-value">R$14,90/mês</span></div>
+      <div class="stack-item"><span class="stack-label">Assistente de IA personalizado (ChatGPT Plus)</span><span class="stack-value">R$99,90/mês</span></div>
+      <div class="stack-item"><span class="stack-label">Comunidade com accountability estruturado</span><span class="stack-value">Não existe</span></div>
+    </div>
+
+    <div class="stack-total-wrap reveal reveal-d2">
+      <span class="stack-total-label">Total se comprado separado</span>
+      <span class="stack-total-value">R$194,50/mês</span>
+    </div>
+
+    <div class="reveal reveal-d2" style="padding:20px;background:var(--card);border:1px solid var(--border);border-radius:var(--r);margin-bottom:0;">
+      <p class="body-p" style="margin:0;">E ainda assim você teria <strong>cinco apps diferentes, cinco senhas diferentes, cinco ambientes que não conversam entre si</strong> — e nenhum deles construído sobre o método Hard Mode. No Hard Mode App, tudo está em um lugar. Tudo está conectado. E tudo foi construído para o homem que está tentando construir quem ele é.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ████████████████████████████████
+     PREÇO
+████████████████████████████████ -->
+<section class="section-light">
+  <div class="wrap" style="max-width:600px;">
+    <div class="reveal" style="text-align:center;margin-bottom:36px;">
+      <p class="eyebrow">Seu investimento</p>
+      <div class="divider" style="margin:14px auto 0;"></div>
+    </div>
+
+    <div class="price-card reveal reveal-d1">
+      <div class="price-label">Hard Mode App · Acesso Mensal</div>
+      <div class="price-main">
+        <span class="price-sup">R$</span>49<span style="opacity:0.6">,90</span>
+      </div>
+      <div class="price-period">por mês</div>
+      <p class="price-context">
+        Menos de <strong>R$1,70 por dia</strong>.<br>
+        Menos do que qualquer outra assinatura no seu celular<br>que não está construindo quem você é.
+      </p>
+
+      <div class="price-features">
+        <div class="price-feature">Acesso imediato a todos os 12 módulos</div>
+        <div class="price-feature">Sem contrato · cancele quando quiser</div>
+        <div class="price-feature">Sem perder o ciclo já pago ao cancelar</div>
+        <div class="price-feature">Novos recursos incluídos sem custo extra</div>
+        <div class="price-feature">Garantia de 7 dias sem perguntas</div>
+      </div>
+
+      <a href="LINK_CHECKOUT_APP" class="btn btn--primary" id="btn-cta-4">
+        → Sim, quero o Hard Mode App
+      </a>
+      <p class="btn-sub" style="margin-top:12px;">Acesso imediato · Seguro · Cancele quando quiser</p>
+    </div>
+  </div>
+</section>
+
+<!-- ████████████████████████████████
+     GARANTIA
+████████████████████████████████ -->
+<section class="section-dark">
+  <div class="wrap">
+    <div class="reveal">
+      <p class="eyebrow">Sem risco</p>
+      <div class="divider"></div>
+      <h2 class="display section-title" style="margin-bottom:28px;">Garantia de <em>7 dias.</em></h2>
+    </div>
+
+    <div class="guarantee-wrap reveal reveal-d1">
+      <div class="guarantee-icon">🛡️</div>
+      <div>
+        <div class="guarantee-title">Você usa. Você decide.</div>
+        <p class="guarantee-text">Use o app pelos primeiros 7 dias. Crie seus hábitos, faça um check-in nos três pilares, escreva o Necrológio, registre um treino. Se depois de usar de verdade você sentir que não foi o que esperava — manda um e-mail e devolvemos o valor do primeiro mês integralmente. Sem formulário complicado. Sem justificativa obrigatória. Sem burocracia.</p>
+        <p class="guarantee-text" style="margin-top:10px;"><strong>O risco é nosso. A construção é sua.</strong></p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ████████████████████████████████
+     CTA FINAL
+████████████████████████████████ -->
+<section class="section-light">
+  <div class="wrap" style="max-width:680px; text-align:center;">
+    <div class="reveal">
+      <p class="eyebrow">Sua decisão</p>
+      <div class="divider" style="margin:14px auto 28px;"></div>
+      <h2 class="display section-title" style="margin-bottom:24px;">
+        Um mapa.<br>
+        <em>Ou um mapa e o terreno.</em>
+      </h2>
+      <p class="body-p" style="max-width:540px;margin:0 auto 32px;">
+        Você está saindo dessa página com o Protocolo em mãos. O método está ali — as dez aulas, os exercícios, o Necrológio, a estrutura. Agora você tem duas opções.
+      </p>
+    </div>
+
+    <div class="choice-wrap reveal reveal-d1">
+      <div class="choice-card choice-card--no">
+        <div class="choice-label choice-label--no">Opção A</div>
+        <p class="choice-desc">Aplicar o Protocolo por conta própria — como tem tentado fazer com tudo que aprendeu até agora. Sem onde registrar, sem progresso visível, sem estrutura que sustente o método quando a motivação cair.</p>
+      </div>
+      <div class="choice-card choice-card--yes">
+        <div class="choice-label choice-label--yes">Opção B</div>
+        <p class="choice-desc" style="color:var(--white);">Entrar para o Hard Mode App hoje e ter, a partir do próximo login, um ambiente construído para que o que você está comprometendo a fazer agora não vire mais uma tentativa esquecida em três semanas.</p>
+      </div>
+    </div>
+
+    <div style="margin-top:36px;" class="reveal reveal-d2">
+      <p class="body-p" style="max-width:500px;margin:0 auto 28px;">
+        O Protocolo te deu o começo. O App garante a continuidade.
+      </p>
+      <div class="btn-wrap">
+        <a href="LINK_CHECKOUT_APP" class="btn btn--primary" id="btn-cta-5">
+          → Entrar para o Hard Mode App!
+        </a>
+        <p class="btn-sub">Acesso imediato · Garantia de 7 dias · Cancele quando quiser</p>
+      </div>
+    </div>
+
+    <div class="decline-wrap reveal reveal-d3">
+      <button class="decline-link" onclick="window.location.href='LINK_POS_RECUSA'">
+        Não, obrigado. Vou aplicar o Protocolo sem o app por enquanto.
+      </button>
+    </div>
+  </div>
+</section>
+
+<!-- ████████████████████████████████
+     FOOTER
+████████████████████████████████ -->
+<footer>
+  © 2025 Hard Mode Inc. · Todos os direitos reservados<br>
+  <a href="#" style="text-decoration:underline;text-underline-offset:3px;">Política de Privacidade</a>
+  &nbsp;·&nbsp;
+  <a href="#" style="text-decoration:underline;text-underline-offset:3px;">Termos de Uso</a>
+</footer>
+
+<script>
+// Scroll reveal
+const reveals = document.querySelectorAll('.reveal');
+const io = new IntersectionObserver((entries) => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      e.target.classList.add('visible');
+      io.unobserve(e.target);
+    }
+  });
+}, { threshold: 0.12 });
+reveals.forEach(el => io.observe(el));
+
+// Pulse no botão CTA após 900ms
+setTimeout(() => {
+  document.querySelectorAll('.btn--primary').forEach(btn => {
+    btn.style.animation = 'pulse-btn 2.8s ease-in-out infinite';
+  });
+}, 900);
+
+// CSS keyframe para pulse dos botões
+const style = document.createElement('style');
+style.textContent = `
+@keyframes pulse-btn {
+  0%, 100% { box-shadow: 0 4px 28px rgba(94,23,235,0.45), 0 1px 0 rgba(255,255,255,0.12) inset; }
+  50%       { box-shadow: 0 8px 48px rgba(94,23,235,0.65), 0 1px 0 rgba(255,255,255,0.15) inset; }
+}`;
+document.head.appendChild(style);
+</script>
+</body>
+</html>
