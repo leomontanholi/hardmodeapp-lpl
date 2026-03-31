@@ -254,7 +254,6 @@ em { color: var(--purple-lt); font-style: normal; }
   margin-bottom: 18px;
   animation: pulse-badge 2.8s ease-in-out infinite;
 }
-.stop-badge::before { content: '●'; font-size: 8px; }
 @keyframes pulse-badge {
   0%, 100% { box-shadow: 0 0 0 0 rgba(94,23,235,0.3); }
   50%       { box-shadow: 0 0 0 6px rgba(94,23,235,0); }
@@ -300,30 +299,23 @@ em { color: var(--purple-lt); font-style: normal; }
   content: '';
   position: absolute; top: 0; left: 0; right: 0; height: 1px;
   background: linear-gradient(90deg, transparent, rgba(139,92,246,0.5), transparent);
+  z-index: 2;
 }
-.vsl-play {
-  width: 72px; height: 72px;
-  background: linear-gradient(135deg, var(--purple), var(--purple-lt));
-  border-radius: 50%;
-  display: flex; align-items: center; justify-content: center;
-  box-shadow: 0 0 40px rgba(94,23,235,0.4);
+.vsl-embed {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  background: #000;
 }
-.vsl-play svg { margin-left: 4px; }
-.vsl-label {
-  font-family: 'Barlow Condensed', sans-serif;
-  font-weight: 700; font-size: 13px; letter-spacing: 0.14em;
-  text-transform: uppercase; color: var(--dim);
+.vsl-embed iframe {
+  width: 100%;
+  height: 100%;
+  border: 0;
 }
 .section-light .vsl-card {
   background: rgba(255,255,255,0.76);
   border: 1px solid rgba(23,19,33,0.08);
   box-shadow: 0 26px 60px rgba(23,19,33,0.08);
-}
-.section-light .vsl-placeholder {
-  background: rgba(94,23,235,0.02);
-}
-.section-light .vsl-label {
-  color: var(--dark-dim);
 }
 
 /* ═══════════════════════════════════════════
@@ -701,12 +693,14 @@ footer {
     <div class="reveal reveal-d2" style="width:100%;margin:0 auto 24px;">
       <p class="eyebrow" style="text-align:center;margin-bottom:12px;">Assista antes de decidir</p>
       <div class="vsl-card">
-        <!-- SUBSTITUIR PELO EMBED REAL DO VSL -->
-        <div class="vsl-placeholder">
-          <div class="vsl-play">
-            <svg width="28" height="28" viewBox="0 0 24 24" fill="white"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-          </div>
-          <span class="vsl-label">https://www.youtube.com/embed/uZ5bwzGK9Rg?controls=0</span>
+        <div class="vsl-embed">
+          <iframe
+            src="https://www.youtube.com/embed/uZ5bwzGK9Rg?controls=0"
+            title="Hard Mode App VSL"
+            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+            allowfullscreen
+            referrerpolicy="strict-origin-when-cross-origin">
+          </iframe>
         </div>
       </div>
     </div>
