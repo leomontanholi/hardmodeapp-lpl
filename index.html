@@ -15,6 +15,7 @@
 ═══════════════════════════════════════════ */
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 html { scroll-behavior: smooth; -webkit-text-size-adjust: 100%; }
+#investimento { scroll-margin-top: 24px; }
 
 :root {
   --bg:          #06060c;
@@ -703,8 +704,8 @@ footer {
 
     <!-- H2 — Confirmação da compra + contexto do acesso exclusivo -->
     <p class="hero__h2 reveal reveal-d2">
-      Sua compra do <strong style="color:var(--white);">Protocolo de Força Prática</strong> foi confirmada e o acesso chega por e-mail em breve.
-      Mas antes de você fechar essa página:<br>o <strong style="color:var(--white);">Hard Mode App</strong> — o ambiente onde o método ganha vida, onde os hábitos vão ser registrados, onde o progresso vai ser visível — <strong>está disponível para<br>clientes do Protocolo apenas aqui, agora.</strong>
+      Sua compra do <strong style="color:var(--white);">Protocolo de Força Prática</strong> foi confirmada e o acesso chega por e-mail em breve.<br>
+       Mas antes de você fechar essa página:<br>o <strong style="color:var(--white);">Hard Mode App</strong> — o ambiente onde o método ganha vida, onde os hábitos vão ser registrados, onde o progresso vai ser visível — <strong>está disponível para<br>clientes do Protocolo apenas aqui, agora.</strong>
     </p>
 
     <!-- VSL — PRIMEIRA DOBRA -->
@@ -725,10 +726,10 @@ footer {
 
     <!-- CTA imediato pós-VSL -->
     <div class="btn-wrap reveal reveal-d3" style="margin-bottom:56px;">
-      <a href="https://pay.hotmart.com/V104980195L?checkoutMode=10" class="btn btn--primary" id="btn-cta-1">
+      <a href="#investimento" class="btn btn--primary" id="btn-cta-1">
         → Sim, quero o Hard Mode App
       </a>
-      <p class="btn-sub">Acesso imediato.<br>Cancele quando quiser.<br>Garantia de 7 dias</p>
+      <p class="btn-sub">Acesso imediato. Cancele quando quiser. Garantia de 7 dias</p>
     </div>
 
   </div>
@@ -789,22 +790,12 @@ footer {
 <section class="section-light" style="padding:40px 0; border-top:none !important;">
   <div class="wrap">
     <div class="btn-wrap">
-      <a href="https://pay.hotmart.com/V104980195L?checkoutMode=10" class="btn btn--primary" id="btn-cta-2">
+      <a href="#investimento" class="btn btn--primary" id="btn-cta-2">
         → Quero acessar o app agora!
       </a>
       <p class="btn-sub">Hard Mode App | R$49,90/mês. Cancele quando quiser.</p>
     </div>
   </div>
-   <!-- HOTMART - Sales Funnel Widget -->
-<!--- sales funnel container --->
-<div id="hotmart-sales-funnel"></div>
-
-<!--- script load and setup --->
-<script src="https://checkout.hotmart.com/lib/hotmart-checkout-elements.js"></script>
-<script>
-checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
-</script>
-<!-- HOTMART - Sales Funnel Widget -->
 </section>
 
 <!-- ████████████████████████████████
@@ -968,7 +959,7 @@ checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
 <!-- ████████████████████████████████
      PREÇO
 ████████████████████████████████ -->
-<section class="section-light">
+<section class="section-light" id="investimento">
   <div class="wrap" style="max-width:600px;">
     <div class="reveal" style="text-align:center;margin-bottom:36px;">
       <p class="eyebrow">Seu investimento</p>
@@ -997,7 +988,7 @@ checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
       <a href="https://pay.hotmart.com/V104980195L?checkoutMode=10" class="btn btn--primary" id="btn-cta-4">
         → Sim, quero o Hard Mode App
       </a>
-      <p class="btn-sub" style="margin-top:12px;">Acesso imediato · Seguro · Cancele quando quiser</p>
+      <p class="btn-sub" style="margin-top:12px;">Acesso imediato. Seguro. Cancele quando quiser.</p>
     </div>
   </div>
 </section>
@@ -1057,10 +1048,10 @@ checkoutElements.init('salesFunnel').mount('#hotmart-sales-funnel')
         O Protocolo te deu o começo.<br>O App garante a continuidade.
       </p>
       <div class="btn-wrap">
-        <a href="https://pay.hotmart.com/V104980195L?checkoutMode=10" class="btn btn--primary" id="btn-cta-5">
+        <a href="#investimento" class="btn btn--primary" id="btn-cta-5">
           → Entrar para o Hard Mode App!
         </a>
-        <p class="btn-sub">Acesso imediato.<br>Garantia de 7 dias.<br>Cancele quando quiser.</p>
+        <p class="btn-sub">Acesso imediato. Garantia de 7 dias. Cancele quando quiser.</p>
       </div>
     </div>
 
