@@ -313,6 +313,56 @@ em { color: var(--purple-lt); font-style: normal; }
   height: 100%;
   border: 0;
 }
+
+.video-poster {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 100%;
+  border: none;
+  padding: 0;
+  background: #000;
+  cursor: pointer;
+}
+
+.video-poster img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.video-poster::after {
+  content: '';
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(180deg, rgba(6,6,12,0.08), rgba(6,6,12,0.24));
+}
+
+.video-poster__play {
+  position: absolute;
+  inset: 50% auto auto 50%;
+  transform: translate(-50%, -50%);
+  width: 76px;
+  height: 76px;
+  border-radius: 50%;
+  background: rgba(6,6,12,0.74);
+  border: 1px solid rgba(255,255,255,0.12);
+  display: grid;
+  place-items: center;
+  z-index: 2;
+  box-shadow: 0 16px 36px rgba(0,0,0,0.22);
+}
+
+.video-poster__play::before {
+  content: '';
+  margin-left: 4px;
+  width: 0;
+  height: 0;
+  border-top: 12px solid transparent;
+  border-bottom: 12px solid transparent;
+  border-left: 18px solid var(--white);
+}
+
 .section-light .vsl-card {
   background: rgba(255,255,255,0.76);
   border: 1px solid rgba(23,19,33,0.08);
@@ -713,20 +763,26 @@ footer {
       <p class="eyebrow" style="text-align:center;margin-bottom:12px;">Assista antes de decidir</p>
       <div class="vsl-card">
         <div class="vsl-embed">
-          <iframe
-            src="https://www.youtube.com/embed/uZ5bwzGK9Rg?controls=0"
-            title="Hard Mode App VSL"
-            allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-            allowfullscreen
-            referrerpolicy="strict-origin-when-cross-origin">
-          </iframe>
+          <button
+        type="button"
+        class="video-poster"
+        id="video-poster"
+        aria-label="Reproduzir vídeo do Hard Mode App"
+        data-embed="https://www.youtube.com/embed/uZ5bwzGK9Rg?autoplay=1&controls=0&rel=0">
+        <img
+          src="https://i.ytimg.com/vi/uZ5bwzGK9Rg/maxresdefault.jpg"
+          alt="Vídeo do Hard Mode App"
+          loading="eager"
+          fetchpriority="high">
+        <span class="video-poster__play" aria-hidden="true"></span>
+      </button>
         </div>
       </div>
     </div>
 
     <!-- CTA imediato pós-VSL -->
     <div class="btn-wrap reveal reveal-d3" style="margin-bottom:56px;">
-      <a href="#investimento" class="btn btn--primary" id="btn-cta-1">
+      <a href="https://pay.hotmart.com/V104980195L?checkoutMode=10" class="btn btn--primary" id="btn-cta-1">
         → Sim, quero o Hard Mode App
       </a>
       <p class="btn-sub">Acesso imediato. Cancele quando quiser. Garantia de 7 dias</p>
@@ -790,7 +846,7 @@ footer {
 <section class="section-light" style="padding:40px 0; border-top:none !important;">
   <div class="wrap">
     <div class="btn-wrap">
-      <a href="#investimento" class="btn btn--primary" id="btn-cta-2">
+      <a href="https://pay.hotmart.com/V104980195L?checkoutMode=10" class="btn btn--primary" id="btn-cta-2">
         → Quero acessar o app agora!
       </a>
       <p class="btn-sub">Hard Mode App | R$49,90/mês. Cancele quando quiser.</p>
@@ -1048,7 +1104,7 @@ footer {
         O Protocolo te deu o começo.<br>O App garante a continuidade.
       </p>
       <div class="btn-wrap">
-        <a href="#investimento" class="btn btn--primary" id="btn-cta-5">
+        <a href="https://pay.hotmart.com/V104980195L?checkoutMode=10" class="btn btn--primary" id="btn-cta-5">
           → Entrar para o Hard Mode App!
         </a>
         <p class="btn-sub">Acesso imediato. Garantia de 7 dias. Cancele quando quiser.</p>
@@ -1072,6 +1128,32 @@ footer {
   &nbsp;·&nbsp;
   <a href="#" style="text-decoration:underline;text-underline-offset:3px;">Termos de Uso</a>
 </footer>
+
+
+<script>
+(function () {
+  var poster = document.getElementById('video-poster');
+  var container = poster ? poster.parentElement : null;
+
+  if (!poster || !container) return;
+
+  poster.addEventListener('click', function () {
+    var src = poster.getAttribute('data-embed');
+    if (!src) return;
+
+    var iframe = document.createElement('iframe');
+    iframe.src = src;
+    iframe.title = 'Hard Mode App VSL';
+    iframe.loading = 'eager';
+    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
+    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
+    iframe.allowFullscreen = true;
+
+    container.innerHTML = '';
+    container.appendChild(iframe);
+  }, { once: true });
+})();
+</script>
 
 <script>
 // Scroll reveal
