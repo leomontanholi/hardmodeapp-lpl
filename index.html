@@ -763,19 +763,14 @@ footer {
       <p class="eyebrow" style="text-align:center;margin-bottom:12px;">Assista antes de decidir</p>
       <div class="vsl-card">
         <div class="vsl-embed">
-          <button
-        type="button"
-        class="video-poster"
-        id="video-poster"
-        aria-label="Reproduzir vídeo do Hard Mode App"
-        data-embed="https://www.youtube.com/embed/uZ5bwzGK9Rg?autoplay=1&controls=0&rel=0">
-        <img
-          src="https://i.ytimg.com/vi/uZ5bwzGK9Rg/maxresdefault.jpg"
-          alt="Vídeo do Hard Mode App"
-          loading="eager"
-          fetchpriority="high">
-        <span class="video-poster__play" aria-hidden="true"></span>
-      </button>
+          <iframe
+            src="https://player.mediadelivery.net/play/636159/11742540-ce4a-449c-950d-c8a28e26e442"
+            title="Hard Mode App VSL"
+            loading="eager"
+            referrerpolicy="strict-origin-when-cross-origin"
+            allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; web-share"
+            allowfullscreen>
+          </iframe>
         </div>
       </div>
     </div>
@@ -1129,31 +1124,6 @@ footer {
   <a href="#" style="text-decoration:underline;text-underline-offset:3px;">Termos de Uso</a>
 </footer>
 
-
-<script>
-(function () {
-  var poster = document.getElementById('video-poster');
-  var container = poster ? poster.parentElement : null;
-
-  if (!poster || !container) return;
-
-  poster.addEventListener('click', function () {
-    var src = poster.getAttribute('data-embed');
-    if (!src) return;
-
-    var iframe = document.createElement('iframe');
-    iframe.src = src;
-    iframe.title = 'Hard Mode App VSL';
-    iframe.loading = 'eager';
-    iframe.referrerPolicy = 'strict-origin-when-cross-origin';
-    iframe.allow = 'accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share';
-    iframe.allowFullscreen = true;
-
-    container.innerHTML = '';
-    container.appendChild(iframe);
-  }, { once: true });
-})();
-</script>
 
 <script>
 // Scroll reveal
